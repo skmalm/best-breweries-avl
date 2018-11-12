@@ -55,6 +55,10 @@ class App extends Component {
       url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/155/beer-mug_1f37a.png',
       scaledSize: new googleMaps.Size(50, 50)
     }
+    const toast = {
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/155/clinking-beer-mugs_1f37b.png',
+      scaledSize: new googleMaps.Size(50, 50)
+    }
     const infoWindow = new googleMaps.InfoWindow();
     for (let i = 0; i < breweries.length; i++) {
       let marker = new googleMaps.Marker({
@@ -64,6 +68,12 @@ class App extends Component {
         icon: beer
       });
       marker.addListener('click', function() {
+        marker.setIcon(toast);
+        marker.setAnimation(googleMaps.Animation.BOUNCE);
+        setTimeout(function() {
+          marker.setIcon(beer);
+          marker.setAnimation(null);
+        }, 2000);
         populateInfoWindow(this, infoWindow)
       })
       markers.push(marker);
