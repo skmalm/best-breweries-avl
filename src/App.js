@@ -4,9 +4,9 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        content here
-      </div>
+      <main>
+        <div id="map">map will go here</div>
+      </main>
     );
   }
 }
