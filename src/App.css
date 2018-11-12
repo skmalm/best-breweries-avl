@@ -7,3 +7,11 @@ html, body {
 #map {
   height: 100vh;
 }
+
+.infoWindowTitle {
+  font-size: 1.5em;
+}
+
+.infoWindowContent {
+  font-size: 1.2em;
+}

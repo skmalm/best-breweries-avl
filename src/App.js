@@ -74,7 +74,7 @@ class App extends Component {
           marker.setIcon(beer);
           marker.setAnimation(null);
         }, 2000);
-        populateInfoWindow(this, infoWindow)
+        fetchAndPopulateInfoWindow(this, infoWindow, breweries[i]);
       })
       markers.push(marker);
     }
@@ -107,20 +107,9 @@ function loadGoogleMapsScript(url) {
   domScript.parentNode.insertBefore(googleMapsScript, domScript);
 }
 
-function populateInfoWindow(marker, infoWindow) {
-  // if infoWindow for marker not already open, open infoWindow
-  if (infoWindow.marker !== marker) {
-    infoWindow.marker = marker;
-    infoWindow.setContent(`<div>${marker.title}</div>`);
-    infoWindow.open(map, marker);
-    infoWindow.addListener('closeclick', function() {
-      infoWindow.setMarker = null;
-    });
-  }
-}
-
-function fsfetch(venueID) {
-  let baseURL = 'https://api.foursquare.com/v2/venues';
+function fetchAndPopulateInfoWindow(marker, infoWindow, brewery) {
+  let baseURL = 'FAILhttps://api.foursquare.com/v2/venues';
+  let venueID = brewery.id;
   let clientID = '50XYZXBWNMKJSRCCP2SXIRKBXWT3I1SKQB0I44N5MNESUCUA';
   let clientSecret = 'SECGVYMLZ0MMQKDFSQ2CZ2D24CFSCZUISKX4YWUPJU5OKE0A';
   let version = '20181112';
@@ -130,10 +119,31 @@ function fsfetch(venueID) {
   fetch(fullURL).then(result => {
     return result.json();
   }).then(function(data) {
-    console.log("The rating is " + data.response.venue.rating);
-  }).catch(e => console.log(e));
+    let rating = data.response.venue.rating;
+    console.log(rating);
+    populateInfoWindow(marker, infoWindow, brewery, rating);
+  }).catch(function(error) {
+    console.log(error);
+    let ratingErr = "Couldn't retrieve score";
+    populateInfoWindow(marker, infoWindow, brewery, ratingErr);
+  });
 }
 
-fsfetch(breweries[0].id);
+function populateInfoWindow(marker, infoWindow, brewery, rating) {
+  // if infoWindow for marker not already open, open infoWindow
+  if (infoWindow.marker !== marker) {
+    infoWindow.marker = marker;
+    infoWindow.setContent(`
+      <div>
+        <div class="infoWindowTitle">${marker.title}</div>
+        <div class="infoWindowContent">Foursquare rating: 0.0</div>
+      </div>
+      `);
+    infoWindow.open(map, marker);
+    infoWindow.addListener('closeclick', function() {
+      infoWindow.setMarker = null;
+    });
+  }
+}
 
 export default App;
