@@ -51,14 +51,20 @@ class App extends Component {
     });
 
     const markers = [];
+    const beer = {
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/155/beer-mug_1f37a.png',
+      scaledSize: new googleMaps.Size(50, 50)
+    }
+    const infoWindow = new googleMaps.InfoWindow();
     for (let i = 0; i < breweries.length; i++) {
       let marker = new googleMaps.Marker({
         position: breweries[i].location,
         title: breweries[i].name,
         animation: googleMaps.Animation.DROP,
+        icon: beer
       });
       marker.addListener('click', function() {
-        populateInfoWindow(this, new googleMaps.InfoWindow())
+        populateInfoWindow(this, infoWindow)
       })
       markers.push(marker);
     }
