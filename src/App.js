@@ -5,14 +5,27 @@ const breweries = [
   {
     name: "Burial Beer Co.",
     location: {lat: 35.588252, lng: -82.553736},
-    local: true,
-    food: true
+    local: true, food: true
   },
   {
     name: "Sierra Nevada Brewing Co.",
     location: {lat: 35.430819, lng: -82.553687},
-    local: false,
-    food: true
+    local: false, food: true
+  },
+  {
+    name: "Thirsty Monk",
+    location: {lat: 35.486380, lng: -82.555217},
+    local: false, food: true
+  },
+  {
+    name: "Highland Brewing Company",
+    location: {lat: 35.570867, lng: -82.497882},
+    local: true, food: false
+  },
+  {
+    name: "New Belgium Brewing Company",
+    location: {lat: 35.586751, lng: -82.570580},
+    local: false, food: false
   },
 ]
 
@@ -28,21 +41,24 @@ class App extends Component {
   }
 
   initMap = () => {
+    const googleMaps = window.google.maps;
     const avlCenter = {lat: 35.517908, lng: -82.553479};
-    const map = new window.google.maps.Map(document.getElementById('map'), {
+
+    const map = new googleMaps.Map(document.getElementById('map'), {
       center: avlCenter,
       zoom: 13
     });
+
     const markers = [];
     for (let i = 0; i < breweries.length; i++) {
-      let marker = new window.google.maps.Marker({
+      let marker = new googleMaps.Marker({
         position: breweries[i].location,
         title: breweries[i].title,
-        animation: window.google.maps.Animation.DROP,
+        animation: googleMaps.Animation.DROP,
       });
       markers.push(marker);
     }
-    const bounds = new window.google.maps.LatLngBounds();
+    const bounds = new googleMaps.LatLngBounds();
     for (let i = 0; i < markers.length; i++) {
       markers[i].setMap(map);
       bounds.extend(markers[i].position);
