@@ -6,7 +6,7 @@ const breweries = [
   {
     name: "Burial Beer Co.",
     location: {lat: 35.588252, lng: -82.553736},
-    local: true, food: true
+    local: true, food: true, id: '51bcaa49498e39a39ab97837'
   },
   {
     name: "Sierra Nevada Brewing Co.",
@@ -118,5 +118,22 @@ function populateInfoWindow(marker, infoWindow) {
     });
   }
 }
+
+function fsfetch(venueID) {
+  let baseURL = 'https://api.foursquare.com/v2/venues';
+  let clientID = '50XYZXBWNMKJSRCCP2SXIRKBXWT3I1SKQB0I44N5MNESUCUA';
+  let clientSecret = 'SECGVYMLZ0MMQKDFSQ2CZ2D24CFSCZUISKX4YWUPJU5OKE0A';
+  let version = '20181112';
+
+  let fullURL = `${baseURL}/${venueID}?&client_id=${clientID}&client_secret=${clientSecret}&v=${version}`;
+
+  fetch(fullURL).then(result => {
+    return result.json();
+  }).then(function(data) {
+    console.log("The rating is " + data.response.venue.rating);
+  }).catch(e => console.log(e));
+}
+
+fsfetch(breweries[0].id);
 
 export default App;
