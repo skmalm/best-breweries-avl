@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
+let map;
 const breweries = [
   {
     name: "Burial Beer Co.",
@@ -44,7 +45,7 @@ class App extends Component {
     const googleMaps = window.google.maps;
     const avlCenter = {lat: 35.517908, lng: -82.553479};
 
-    const map = new googleMaps.Map(document.getElementById('map'), {
+    map = new googleMaps.Map(document.getElementById('map'), {
       center: avlCenter,
       zoom: 13
     });
@@ -53,9 +54,12 @@ class App extends Component {
     for (let i = 0; i < breweries.length; i++) {
       let marker = new googleMaps.Marker({
         position: breweries[i].location,
-        title: breweries[i].title,
+        title: breweries[i].name,
         animation: googleMaps.Animation.DROP,
       });
+      marker.addListener('click', function() {
+        populateInfoWindow(this, new googleMaps.InfoWindow())
+      })
       markers.push(marker);
     }
     const bounds = new googleMaps.LatLngBounds();
@@ -85,6 +89,18 @@ function loadGoogleMapsScript(url) {
   googleMapsScript.defer = true;
   // insert the Google Maps script into the DOM
   domScript.parentNode.insertBefore(googleMapsScript, domScript);
+}
+
+function populateInfoWindow(marker, infoWindow) {
+  // if infoWindow for marker not already open, open infoWindow
+  if (infoWindow.marker !== marker) {
+    infoWindow.marker = marker;
+    infoWindow.setContent(`<div>${marker.title}</div>`);
+    infoWindow.open(map, marker);
+    infoWindow.addListener('closeclick', function() {
+      infoWindow.setMarker = null;
+    });
+  }
 }
 
 export default App;
