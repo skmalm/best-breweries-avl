@@ -11,22 +11,22 @@ const breweries = [
   {
     name: "Sierra Nevada Brewing Co.",
     location: {lat: 35.430819, lng: -82.553687},
-    local: false, food: true
+    local: false, food: true, id: '51190c38e4b066681b6d11b9'
   },
   {
     name: "Thirsty Monk",
     location: {lat: 35.486380, lng: -82.555217},
-    local: false, food: true
+    local: false, food: true, id: '5259cdb8498ed89f60b46999'
   },
   {
     name: "Highland Brewing Company",
     location: {lat: 35.570867, lng: -82.497882},
-    local: true, food: false
+    local: true, food: false, id: '4b511650f964a520a44127e3'
   },
   {
     name: "New Belgium Brewing Company",
     location: {lat: 35.586751, lng: -82.570580},
-    local: false, food: false
+    local: false, food: false, id: '509ee3b9e4b083e9a591b56f'
   },
 ]
 
