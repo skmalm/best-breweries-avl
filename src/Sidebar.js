@@ -21,8 +21,8 @@ class Sidebar extends Component {
   render() {
     const onClickListBrewery = this.props.onClickListBrewery;
     return (
-      <nav id="sideBar">
-        <div id="flexContainer">
+      <nav id="sideBar" role="Navigation">
+        <div id="flexContainer" role="None">
           <h1>Asheville's Top 5 Breweries</h1>
           <label htmlFor="filterMenu">Filter:</label>
           <select id="filterMenu" tabindex="1" onChange={this.handleFilterChange}>
