@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Sidebar extends Component {
   render() {
-    const breweries = this.props.breweries;
+    const { breweries, onClickListBrewery } = this.props;
     return (
       <nav id="sideBar">
         <h1>Asheville's Top 5 Breweries</h1>
@@ -14,8 +14,14 @@ class Sidebar extends Component {
         </select>
         <section>
           <ul>
-          {breweries.map(brewery => (
-            <li key={brewery.id} className='brewery-list-item'>
+          {breweries.map((brewery, index) => (
+            <li
+              key={brewery.id}
+              className='brewery-list-item'
+              onClick={function() {
+                onClickListBrewery(index);
+              }}
+            >
               {brewery.name}
             </li>
           ))}

@@ -7,31 +7,37 @@ const breweries = [
   {
     name: "Burial Beer Co.",
     location: {lat: 35.588252, lng: -82.553736},
-    local: true, food: true, id: '51bcaa49498e39a39ab97837'
+    local: true, food: true, id: '51bcaa49498e39a39ab97837',
+    listFocus: false
   },
   {
     name: "Sierra Nevada Brewing Co.",
     location: {lat: 35.430819, lng: -82.553687},
-    local: false, food: true, id: '51190c38e4b066681b6d11b9'
+    local: false, food: true, id: '51190c38e4b066681b6d11b9',
+    listFocus: false
   },
   {
     name: "Thirsty Monk",
     location: {lat: 35.486380, lng: -82.555217},
-    local: false, food: true, id: '5259cdb8498ed89f60b46999'
+    local: false, food: true, id: '5259cdb8498ed89f60b46999',
+    listFocus: false
   },
   {
     name: "Highland Brewing Company",
     location: {lat: 35.570867, lng: -82.497882},
-    local: true, food: false, id: '4b511650f964a520a44127e3'
+    local: true, food: false, id: '4b511650f964a520a44127e3',
+    listFocus: false
   },
   {
     name: "New Belgium Brewing Company",
     location: {lat: 35.586751, lng: -82.570580},
-    local: false, food: false, id: '509ee3b9e4b083e9a591b56f'
+    local: false, food: false, id: '509ee3b9e4b083e9a591b56f',
+    listFocus: false
   },
 ]
 
 class App extends Component {
+
   componentDidMount() {
     this.renderMap();
   }
@@ -61,13 +67,16 @@ class App extends Component {
       scaledSize: new googleMaps.Size(50, 50)
     }
     const infoWindow = new googleMaps.InfoWindow();
+
     for (let i = 0; i < breweries.length; i++) {
       let marker = new googleMaps.Marker({
         position: breweries[i].location,
         title: breweries[i].name,
-        animation: googleMaps.Animation.DROP,
         icon: beer
       });
+      if (breweries[i].listFocus) {
+        fetchAndPopulateInfoWindow(marker, infoWindow, breweries[i]);
+      }
       marker.addListener('click', function() {
         marker.setIcon(toast);
         marker.setAnimation(googleMaps.Animation.BOUNCE);
@@ -87,12 +96,21 @@ class App extends Component {
     map.fitBounds(bounds);
   }
 
+  activateListFocus = (breweryIndex) => {
+    for (let i = 0; i < breweries.length; i++) {
+      breweries[i].listFocus = false;
+    }
+    breweries[breweryIndex].listFocus = true;
+    this.initMap();
+  }
+
   render() {
     return (
       <main>
         <div id="map"></div>
         <Sidebar
           breweries={breweries}
+          onClickListBrewery={this.activateListFocus}
         />
       </main>
     );
@@ -112,7 +130,7 @@ function loadGoogleMapsScript(url) {
 }
 
 function fetchAndPopulateInfoWindow(marker, infoWindow, brewery) {
-  let baseURL = 'FAILhttps://api.foursquare.com/v2/venues';
+  let baseURL = 'TESThttps://api.foursquare.com/v2/venues';
   let venueID = brewery.id;
   let clientID = '50XYZXBWNMKJSRCCP2SXIRKBXWT3I1SKQB0I44N5MNESUCUA';
   let clientSecret = 'SECGVYMLZ0MMQKDFSQ2CZ2D24CFSCZUISKX4YWUPJU5OKE0A';
@@ -124,7 +142,6 @@ function fetchAndPopulateInfoWindow(marker, infoWindow, brewery) {
     return result.json();
   }).then(function(data) {
     let rating = data.response.venue.rating;
-    console.log(rating);
     populateInfoWindow(marker, infoWindow, brewery, rating);
   }).catch(function(error) {
     console.log(error);
@@ -140,7 +157,7 @@ function populateInfoWindow(marker, infoWindow, brewery, rating) {
     infoWindow.setContent(`
       <div>
         <div class="infoWindowTitle">${marker.title}</div>
-        <div class="infoWindowContent">Foursquare rating: 0.0</div>
+        <div class="infoWindowContent">Foursquare rating: ${rating}</div>
       </div>
       `);
     infoWindow.open(map, marker);
