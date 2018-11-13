@@ -96,6 +96,7 @@ class App extends Component {
     map.fitBounds(bounds);
   }
 
+  // this method ensures that an infoWindow appears if a list item is clicked
   activateListFocus = (breweryIndex) => {
     for (let i = 0; i < breweries.length; i++) {
       breweries[i].listFocus = false;
@@ -117,18 +118,6 @@ class App extends Component {
   }
 }
 
-function loadGoogleMapsScript(url) {
-  // find the first script element in the DOM
-  const domScript = window.document.getElementsByTagName("script")[0];
-  // make a new script element for the Google Maps API URL
-  const googleMapsScript = window.document.createElement("script");
-  googleMapsScript.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDc-xve6rATSllKLGksP6Mu401efM5QzVY&v=3&callback=initMap";
-  googleMapsScript.async = true;
-  googleMapsScript.defer = true;
-  // insert the Google Maps script into the DOM
-  domScript.parentNode.insertBefore(googleMapsScript, domScript);
-}
-
 function fetchAndPopulateInfoWindow(marker, infoWindow, brewery) {
   let baseURL = 'TESThttps://api.foursquare.com/v2/venues';
   let venueID = brewery.id;
@@ -138,6 +127,7 @@ function fetchAndPopulateInfoWindow(marker, infoWindow, brewery) {
 
   let fullURL = `${baseURL}/${venueID}?&client_id=${clientID}&client_secret=${clientSecret}&v=${version}`;
 
+  // this fetches the Foursquare rating for the brewery, then populates the infoWindow
   fetch(fullURL).then(result => {
     return result.json();
   }).then(function(data) {
@@ -165,6 +155,18 @@ function populateInfoWindow(marker, infoWindow, brewery, rating) {
       infoWindow.setMarker = null;
     });
   }
+}
+
+function loadGoogleMapsScript(url) {
+  // find the first script element in the DOM
+  const domScript = window.document.getElementsByTagName("script")[0];
+  // make a new script element for the Google Maps API URL
+  const googleMapsScript = window.document.createElement("script");
+  googleMapsScript.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDc-xve6rATSllKLGksP6Mu401efM5QzVY&v=3&callback=initMap";
+  googleMapsScript.async = true;
+  googleMapsScript.defer = true;
+  // insert the Google Maps script into the DOM
+  domScript.parentNode.insertBefore(googleMapsScript, domScript);
 }
 
 export default App;

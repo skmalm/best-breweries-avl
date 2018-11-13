@@ -36,6 +36,7 @@ class Sidebar extends Component {
               key={brewery.id}
               className='brewery-list-item'
               onClick={() => {
+                // findIndex ensures that the correct brewery is passed back to App
                 let index = this.state.breweries.findIndex(element => element === brewery);
                 onClickListBrewery(index);
               }}
