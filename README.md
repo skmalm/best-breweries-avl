@@ -1,6 +1,17 @@
-# Important NOTE
+# Overview
 
-I have not yet written the README for this in-progress project. What follows is only the default Create React App documentation for this React project.
+A map-focused app showing what I consider the five best breweries in Asheville, NC. I built this for Udacity's Front End Web Development Nanodegree.
+
+## Getting started
+
+1. Run `npm install` to install all dependencies
+2. Run `serve -s build` to run the production build and access the app via localhost
+
+## Acknowledgments
+
+Thanks to Udacity for the primary instructoinal material.
+
+Thanks to Yahya Elharony for help with loading the Google Maps API in React.
 
 # React Notes
 
