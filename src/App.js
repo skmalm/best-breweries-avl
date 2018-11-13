@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Sidebar from './Sidebar';
 import './App.css';
 
 let map;
@@ -90,6 +91,9 @@ class App extends Component {
     return (
       <main>
         <div id="map"></div>
+        <Sidebar
+          breweries={breweries}
+        />
       </main>
     );
   }
