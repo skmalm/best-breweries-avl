@@ -31,11 +31,12 @@ class Sidebar extends Component {
         </select>
         <section>
           <ul>
-          {this.state.listBreweriesToDisplay.map((brewery, index) => (
+          {this.state.listBreweriesToDisplay.map((brewery) => (
             <li
               key={brewery.id}
               className='brewery-list-item'
-              onClick={function() {
+              onClick={() => {
+                let index = this.state.breweries.findIndex(element => element === brewery);
                 onClickListBrewery(index);
               }}
             >
