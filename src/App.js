@@ -119,7 +119,7 @@ class App extends Component {
 }
 
 function fetchAndPopulateInfoWindow(marker, infoWindow, brewery) {
-  let baseURL = 'TESThttps://api.foursquare.com/v2/venues';
+  let baseURL = 'https://api.foursquare.com/v2/venues';
   let venueID = brewery.id;
   let clientID = '50XYZXBWNMKJSRCCP2SXIRKBXWT3I1SKQB0I44N5MNESUCUA';
   let clientSecret = 'SECGVYMLZ0MMQKDFSQ2CZ2D24CFSCZUISKX4YWUPJU5OKE0A';
