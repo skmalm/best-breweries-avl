@@ -1,3 +1,9 @@
+# Important NOTE
+
+I have not yet written the README for this in-progress project. What follows is only the default Create React App documentation for this React project.
+
+# React Notes
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
