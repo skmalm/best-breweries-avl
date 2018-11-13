@@ -25,7 +25,7 @@ class Sidebar extends Component {
         <div id="flexContainer" role="None">
           <h1>Asheville's Top 5 Breweries</h1>
           <label htmlFor="filterMenu">Filter:</label>
-          <select id="filterMenu" tabindex="1" onChange={this.handleFilterChange}>
+          <select id="filterMenu" tabIndex="1" onChange={this.handleFilterChange}>
             <option value="">--Choose filter option--</option>
             <option value="local">Local-only</option>
             <option value="food">Serves food</option>
@@ -37,7 +37,7 @@ class Sidebar extends Component {
             <li
               key={brewery.id}
               className='brewery-list-item'
-              tabindex="2"
+              tabIndex="2"
               onClick={() => {
                 // findIndex ensures that the correct brewery is passed back to App
                 let index = this.state.breweries.findIndex(element => element === brewery);
