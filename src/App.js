@@ -108,7 +108,7 @@ class App extends Component {
   render() {
     return (
       <main>
-        <div id="map"></div>
+        <div id="map" role="Application"></div>
         <Sidebar
           breweries={breweries}
           onClickListBrewery={this.activateListFocus}
