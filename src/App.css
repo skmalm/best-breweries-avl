@@ -2,6 +2,8 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: #ccc;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 h1 {
@@ -9,14 +11,6 @@ h1 {
   margin-bottom: 0;
   padding-top: 10px;
 }
-
-/* #map {
-  bottom:0px;
-  height: 100vh;
-  left: 340px;
-  position: absolute;
-  right: 0px;
-} */
 
 #map {
   width: 100%;
@@ -34,8 +28,6 @@ h1 {
 }
 
 #sideBar {
-  background: #fff;
-  height: 340px;
   line-height: 35px;
   padding-left: 10px;
   text-align: left;
@@ -51,6 +43,10 @@ li {
   font-size: 1.2em;
 }
 
+li:hover {
+  cursor: pointer;
+}
+
 /* -- responsive -- */
 
 @media screen and (min-width: 500px) {
@@ -59,7 +55,7 @@ li {
     margin-bottom: 10px;
   }
   #map {
-    height: 650px;
+    height: 625px;
   }
 }
 
@@ -69,30 +65,18 @@ li {
     flex-wrap: wrap;
     justify-content: space-around;
     text-align: center;
-    height: 200px;
+    height: 150px;
   }
   #flexContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+  }
+  #filterMenu {
+    width: 200px;
   }
   label {
     margin: 20px 0;
   }
 }
-  /* #map {
-    height: 500px;
-  }
-
-  #filterMenu {
-    margin-top: 100px;
-  }
-
-  #breweryList {
-    margin-right: 30px;
-    text-align: right;
-  }
-  .brewery-list-item {
-    width: 300px;
-  }
-} */
