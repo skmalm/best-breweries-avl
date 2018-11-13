@@ -22,15 +22,17 @@ class Sidebar extends Component {
     const onClickListBrewery = this.props.onClickListBrewery;
     return (
       <nav id="sideBar">
-        <h1>Asheville's Top 5 Breweries</h1>
-        <label htmlFor="filterMenu">Filter:</label>
-        <select id="filterMenu" onChange={this.handleFilterChange}>
-          <option value="">--Choose filter option--</option>
-          <option value="local">Local-only</option>
-          <option value="food">Serves food</option>
-        </select>
+        <div id="flexContainer">
+          <h1>Asheville's Top 5 Breweries</h1>
+          <label htmlFor="filterMenu">Filter:</label>
+          <select id="filterMenu" onChange={this.handleFilterChange}>
+            <option value="">--Choose filter option--</option>
+            <option value="local">Local-only</option>
+            <option value="food">Serves food</option>
+          </select>
+        </div>
         <section>
-          <ul>
+          <ul id="breweryList">
           {this.state.listBreweriesToDisplay.map((brewery) => (
             <li
               key={brewery.id}
