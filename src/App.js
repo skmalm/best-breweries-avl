@@ -145,7 +145,7 @@ function fetchAndPopulateInfoWindow(marker, infoWindow, brewery) {
     populateInfoWindow(marker, infoWindow, brewery, rating);
   }).catch(function(error) {
     console.log(error);
-    let ratingErr = "Couldn't retrieve score";
+    let ratingErr = "Couldn't get score 😅";
     populateInfoWindow(marker, infoWindow, brewery, ratingErr);
   });
 }
