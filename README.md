@@ -8,6 +8,10 @@ A map-focused app showing what I consider the five best breweries in Asheville, 
 2. Run `npm run build` to create a production build
 2. Run `serve -s build` to run the production build and access the app via localhost
 
+## API notes
+
+I have relatively small quotas set for the Google Maps and Foursquare APIs used in this project. If either one isn't working, contact me or try again the next day.
+
 ## Acknowledgments
 
 Thanks to Udacity for the primary instructional material.
