@@ -5,6 +5,7 @@ A map-focused app showing what I consider the five best breweries in Asheville, 
 ## Getting started
 
 1. Run `npm install` to install all dependencies
+2. Run `npm run build` to create a production build
 2. Run `serve -s build` to run the production build and access the app via localhost
 
 ## Acknowledgments
