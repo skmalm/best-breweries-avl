@@ -13,6 +13,7 @@ A map-focused app showing what I consider the five best breweries in Asheville, 
 Thanks to Udacity for the primary instructional material.
 
 Thanks to Yahya Elharony for help with loading the Google Maps API in React.
+(https://www.youtube.com/channel/UCcWSbBe_s-T_gZRnqFbtyIA)
 
 # React Notes
 
